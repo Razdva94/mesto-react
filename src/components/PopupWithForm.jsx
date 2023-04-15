@@ -1,7 +1,6 @@
 import React from "react";
 
-function PopupWithForm(props) {
-  const { name, title, children } = props;
+function PopupWithForm({ name, title, children }) {
   return (
     <div className={`popup popup_type_${name}`}>
       <div className="popup__container">

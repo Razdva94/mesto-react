@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import "../pages/index.css";
 import Header from "./Header";
@@ -7,11 +6,27 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 
 function App() {
+  function handleEditAvatarClick() {
+    const popupAvatar = document.querySelector(".popup_type_update-avatar");
+    popupAvatar.classList.add("popup_opened");
+  }
+  function handleEditProfileClick() {
+    const popupSave = document.querySelector(".popup_type_saved");
+    popupSave.classList.add("popup_opened");
+  }
+  function handleAddPlaceClick() {
+    const popupAddPlace = document.querySelector(".popup_type_create");
+    popupAddPlace.classList.add("popup_opened");
+  }
   return (
     <body className="body">
       <div className="page">
         <Header />
-        <Main />
+        <Main
+          onEditProfile={handleEditProfileClick}
+          onEditAvatar={handleEditAvatarClick}
+          onAddPlace={handleAddPlaceClick}
+        />
         <Footer />
         <PopupWithForm name="saved" title="Редактировать&nbsp;профиль">
           <div className="popup__input-container">

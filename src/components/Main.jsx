@@ -2,27 +2,14 @@ import React from "react";
 import editButton from "../images/Vector(1).svg";
 import profileAddButton from "../images/Vector(2).svg";
 
-function handleEditAvatarClick() {
-  const popupAvatar = document.querySelector(".popup_type_update-avatar");
-  popupAvatar.classList.add("popup_opened");
-}
-function handleEditProfileClick() {
-  const popupSave = document.querySelector(".popup_type_saved");
-  popupSave.classList.add("popup_opened");
-}
-function handleAddPlaceClick() {
-  const popupAddPlace = document.querySelector(".popup_type_create");
-  popupAddPlace.classList.add("popup_opened");
-}
-
-function Main() {
+function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
   return (
     <main className="main">
       <section className="profile">
         <button
           type="button"
           className="profile__avatar-hover"
-          onClick={handleEditAvatarClick}
+          onClick={onEditAvatar}
         >
           {" "}
         </button>
@@ -32,7 +19,7 @@ function Main() {
           <button
             type="button"
             className="profile__button-container"
-            onClick={handleEditProfileClick}
+            onClick={onEditProfile}
           >
             <img
               className="profile__edit-button"
@@ -45,7 +32,7 @@ function Main() {
         <button
           type="button"
           className="profile__add-button"
-          onClick={handleAddPlaceClick}
+          onClick={onAddPlace}
         >
           <img className="profile__cross" src={profileAddButton} alt="крест" />
         </button>
