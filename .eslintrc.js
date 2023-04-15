@@ -27,5 +27,6 @@ module.exports = {
         html: false,
       },
     ],
+    "linebreak-style": 0,
   },
 };

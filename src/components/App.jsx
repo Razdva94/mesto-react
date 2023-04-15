@@ -1,42 +1,17 @@
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React from "react";
 import "../pages/index.css";
-import editButton from "../images/Vector(1).svg";
-import headerLogo from "../images/Vector.svg";
-import profileAddButton from "../images/Vector(2).svg";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
 
 function App() {
   return (
     <body className="body">
       <div className="page">
-        <header className="header">
-          <img className="header__logo" src={headerLogo} alt="логотип места" />
-        </header>
-        <main className="main">
-          <section className="profile">
-            <div className="profile__avatar-hover"></div>
-            <img className="profile__avatar" src="#" alt="Аватар" />
-            <div className="profile__profile-info">
-              <h1 className="profile__title"> </h1>
-              <button type="button" className="profile__button-container">
-                <img
-                  className="profile__edit-button"
-                  src={editButton}
-                  alt="кнопка"
-                />
-              </button>
-              <p className="profile__text"></p>
-            </div>
-            <button type="button" className="profile__add-button">
-              <img className="profile__cross" src={profileAddButton} alt="крест" />
-            </button>
-          </section>
-          <section className="elements"></section>
-        </main>
-
-        <footer className="footer">
-          <p className="footer__text">© 2020 Mesto Russia</p>
-        </footer>
+        <Header />
+        <Main />
+        <Footer />
       </div>
       <div className="popup popup_type_picture-background">
         <div className="popup__picture-container">
