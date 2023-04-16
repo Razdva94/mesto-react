@@ -6,18 +6,30 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 
 function App() {
-  function handleEditAvatarClick() {
-    const popupAvatar = document.querySelector(".popup_type_update-avatar");
-    popupAvatar.classList.add("popup_opened");
-  }
+  const [stateFormSaved, setStateFormSaved] = React.useState(false);
+
   function handleEditProfileClick() {
-    const popupSave = document.querySelector(".popup_type_saved");
-    popupSave.classList.add("popup_opened");
+    setStateFormSaved(!stateFormSaved);
   }
+
+  const [stateFormCreate, setStateFormCreate] = React.useState(false);
+
   function handleAddPlaceClick() {
-    const popupAddPlace = document.querySelector(".popup_type_create");
-    popupAddPlace.classList.add("popup_opened");
+    setStateFormCreate(!stateFormCreate);
   }
+
+  const [stateAvatarUpdate, setStateAvatarUpdate] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    setStateAvatarUpdate(!stateAvatarUpdate);
+  }
+
+  function closeAllPopups() {
+    if (stateFormSaved) setStateFormSaved(!stateFormSaved);
+    if (stateFormCreate) setStateFormCreate(!stateFormCreate);
+    if (stateAvatarUpdate) setStateAvatarUpdate(!stateAvatarUpdate);
+  }
+
   return (
     <body className="body">
       <div className="page">
@@ -28,7 +40,12 @@ function App() {
           onAddPlace={handleAddPlaceClick}
         />
         <Footer />
-        <PopupWithForm name="saved" title="Редактировать&nbsp;профиль">
+        <PopupWithForm
+          name="saved"
+          title="Редактировать&nbsp;профиль"
+          isOpened={stateFormSaved}
+          onClose={closeAllPopups}
+        >
           <div className="popup__input-container">
             <input
               required
@@ -54,7 +71,12 @@ function App() {
             <span className="popup__text-error about-error"></span>
           </div>
         </PopupWithForm>
-        <PopupWithForm name="create" title="Новое место">
+        <PopupWithForm
+          name="create"
+          title="Новое место"
+          isOpened={stateFormCreate}
+          onClose={closeAllPopups}
+        >
           <div className="popup__input-container">
             <input
               required
@@ -79,7 +101,12 @@ function App() {
           </div>
         </PopupWithForm>
         <PopupWithForm name="delete" title="Вы уверены?" />
-        <PopupWithForm name="update-avatar" title="Обновить аватар">
+        <PopupWithForm
+          name="update-avatar"
+          title="Обновить аватар"
+          isOpened={stateAvatarUpdate}
+          onClose={closeAllPopups}
+        >
           <div className="popup__input-container">
             <input
               required

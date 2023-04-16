@@ -30,5 +30,11 @@ module.exports = {
     "linebreak-style": 0,
     "react/prop-types": "off",
     "react/jsx-no-bind": "off",
+    "no-return-assign": "off",
+    "no-param-reassign": "off",
+    "object-curly-newline": "off",
+    "no-underscore-dangle": "off",
+    "prefer-promise-reject-errors": "off",
+    "class-methods-use-this": "off",
   },
 };
