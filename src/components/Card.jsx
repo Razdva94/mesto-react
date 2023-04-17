@@ -13,9 +13,7 @@ function Card({ card, onCardClick }) {
             aria-label="like"
             type="button"
             className="element__like-icon"
-          >
-            {" "}
-          </button>
+          />
           <span className="element__like-number">{card.likes.length}</span>
         </div>
       </div>
