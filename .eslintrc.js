@@ -36,5 +36,8 @@ module.exports = {
     "no-underscore-dangle": "off",
     "prefer-promise-reject-errors": "off",
     "class-methods-use-this": "off",
+    "no-undef": "off",
+    "no-unused-expressions": "off",
+    "react/no-array-index-key": "off",
   },
 };

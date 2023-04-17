@@ -6,28 +6,28 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 
 function App() {
-  const [stateFormSaved, setStateFormSaved] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
 
   function handleEditProfileClick() {
-    setStateFormSaved(!stateFormSaved);
+    setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
   }
 
-  const [stateFormCreate, setStateFormCreate] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
   function handleAddPlaceClick() {
-    setStateFormCreate(!stateFormCreate);
+    setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
   }
 
-  const [stateAvatarUpdate, setStateAvatarUpdate] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 
   function handleEditAvatarClick() {
-    setStateAvatarUpdate(!stateAvatarUpdate);
+    setIsEditAvatarPopupOpen(!isAddPlacePopupOpen);
   }
 
   function closeAllPopups() {
-    if (stateFormSaved) setStateFormSaved(!stateFormSaved);
-    if (stateFormCreate) setStateFormCreate(!stateFormCreate);
-    if (stateAvatarUpdate) setStateAvatarUpdate(!stateAvatarUpdate);
+    if (isEditProfilePopupOpen) setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+    if (isAddPlacePopupOpen) setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+    if (isEditAvatarPopupOpen) setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
   }
 
   return (
@@ -43,7 +43,7 @@ function App() {
         <PopupWithForm
           name="saved"
           title="Редактировать&nbsp;профиль"
-          isOpened={stateFormSaved}
+          isOpened={isEditProfilePopupOpen}
           onClose={closeAllPopups}
         >
           <div className="popup__input-container">
@@ -74,7 +74,7 @@ function App() {
         <PopupWithForm
           name="create"
           title="Новое место"
-          isOpened={stateFormCreate}
+          isOpened={isAddPlacePopupOpen}
           onClose={closeAllPopups}
         >
           <div className="popup__input-container">
@@ -104,7 +104,7 @@ function App() {
         <PopupWithForm
           name="update-avatar"
           title="Обновить аватар"
-          isOpened={stateAvatarUpdate}
+          isOpened={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
         >
           <div className="popup__input-container">
@@ -123,7 +123,7 @@ function App() {
         <div className="element">
           <img
             className="element__bin"
-            src="<%=require('./images/bin.svg')%>"
+            src=""
             alt="мусорка"
           />
           <img className="element__image" src="#" alt="Картинка места" />
