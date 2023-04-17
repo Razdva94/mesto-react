@@ -39,5 +39,6 @@ module.exports = {
     "no-undef": "off",
     "no-unused-expressions": "off",
     "react/no-array-index-key": "off",
+    "arrow-body-style": "off",
   },
 };

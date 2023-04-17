@@ -2,7 +2,7 @@ import React from "react";
 import editButton from "../images/Vector(1).svg";
 import profileAddButton from "../images/Vector(2).svg";
 import api from "../utils/api";
-import bin from "../images/bin.svg";
+import Card from "./Card";
 
 function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
   const [userDescription, setUserDescription] = React.useState();
@@ -24,30 +24,17 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
       setCards(...cards, cardsData);
     });
   }
+  console.log(cards);
   React.useEffect(() => {
     getCards();
   }, []);
-  const cardsRender = cards.map((card, i) => (
-    <div key={i}>
-      <div className="element">
-        <img className="element__bin" src={bin} alt="мусорка" />
-        <img className="element__image" src={card.link} alt="Картинка места" />
-        <div className="element__text-container">
-          <h2 className="element__text">{card.name}</h2>
-          <div className="element__like-container">
-            <button
-              aria-label="like"
-              type="button"
-              className="element__like-icon"
-            >
-              {" "}
-            </button>
-            <span className="element__like-number">{card.likes.length}</span>
-          </div>
-        </div>
+  const cardsRender = cards.map((element, i) => {
+    return (
+      <div key={i}>
+        <Card card={element} />
       </div>
-    </div>
-  ));
+    );
+  });
   return (
     <main className="main">
       <section className="profile">
