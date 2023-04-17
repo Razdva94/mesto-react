@@ -4,9 +4,11 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
@@ -18,18 +20,26 @@ function App() {
     setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
   }
 
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(!isAddPlacePopupOpen);
   }
+  const [selectedCard, setSelectedCard] = React.useState();
 
   function closeAllPopups() {
-    if (isEditProfilePopupOpen) setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+    if (isEditProfilePopupOpen) {
+      setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+    }
     if (isAddPlacePopupOpen) setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
     if (isEditAvatarPopupOpen) setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+    if (selectedCard) setSelectedCard(undefined);
   }
 
+  function handleCardClick(evt) {
+    setSelectedCard(evt.target.closest(".element"));
+  }
   return (
     <body className="body">
       <div className="page">
@@ -38,6 +48,7 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onEditAvatar={handleEditAvatarClick}
           onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
         />
         <Footer />
         <PopupWithForm
@@ -118,14 +129,11 @@ function App() {
             <span className="popup__text-error popup__url-error"></span>
           </div>
         </PopupWithForm>
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
       <template id="element">
         <div className="element">
-          <img
-            className="element__bin"
-            src=""
-            alt="мусорка"
-          />
+          <img className="element__bin" src="" alt="мусорка" />
           <img className="element__image" src="#" alt="Картинка места" />
           <div className="element__text-container">
             <h2 className="element__text"> </h2>

@@ -40,5 +40,10 @@ module.exports = {
     "no-unused-expressions": "off",
     "react/no-array-index-key": "off",
     "arrow-body-style": "off",
+    "comma-dangle": "off",
+    "operator-linebreak": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "react/destructuring-assignment": "off",
   },
 };

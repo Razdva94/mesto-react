@@ -4,34 +4,28 @@ import profileAddButton from "../images/Vector(2).svg";
 import api from "../utils/api";
 import Card from "./Card";
 
-function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
+function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const [userDescription, setUserDescription] = React.useState();
   const [userAvatar, setUserAvatar] = React.useState();
   const [userName, setUserName] = React.useState();
-  function getUserInfo() {
-    api.getInitialProfile().then((userData) => {
-      setUserName(userData.name);
-      setUserAvatar(userData.avatar);
-      setUserDescription(userData.about);
-    });
-  }
-  React.useEffect(() => {
-    getUserInfo();
-  }, []);
   const [cards, setCards] = React.useState([]);
-  function getCards() {
-    api.getInitialCards().then((cardsData) => {
-      setCards(...cards, cardsData);
-    });
+  function getProfileAndCardsInfo() {
+    Promise.all([api.getInitialProfile(), api.getInitialCards()]).then(
+      ([userData, cardsData]) => {
+        setUserName(userData.name);
+        setUserAvatar(userData.avatar);
+        setUserDescription(userData.about);
+        setCards(cardsData);
+      }
+    );
   }
-  console.log(cards);// Сюда ставлю консоль
   React.useEffect(() => {
-    getCards();
+    getProfileAndCardsInfo();
   }, []);
   const cardsRender = cards.map((element, i) => {
     return (
       <div key={i}>
-        <Card card={element} />
+        <Card card={element} onCardClick={onCardClick} />
       </div>
     );
   });
