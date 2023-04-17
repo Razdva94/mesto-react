@@ -24,7 +24,7 @@ function Main({ onEditAvatar, onEditProfile, onAddPlace }) {
       setCards(...cards, cardsData);
     });
   }
-  console.log(cards);
+  console.log(cards);// Сюда ставлю консоль
   React.useEffect(() => {
     getCards();
   }, []);
