@@ -16,7 +16,7 @@ function ImagePopup({ card, onClose }) {
         <img
           className="popup__picture"
           src={src}
-          alt="картинка"
+          alt={text}
         />
         <h3 className="popup__place-name">{text}</h3>
       </div>
