@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from "react";
 
 function PopupWithForm({ name, title, isOpened, children, onClose }) {
@@ -13,9 +14,7 @@ function PopupWithForm({ name, title, isOpened, children, onClose }) {
           type="button"
           aria-label="close"
           onClick={onClose}
-        >
-          {" "}
-        </button>
+        />
         <form
           name={name}
           className={`popup__form popup__form_type_${name}`}

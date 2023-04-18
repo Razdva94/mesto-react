@@ -41,7 +41,7 @@ function App() {
     setSelectedCard(evt.target.closest(".element"));
   }
   return (
-    <body className="body">
+    <div className="body">
       <div className="page">
         <Header />
         <Main
@@ -131,7 +131,7 @@ function App() {
         </PopupWithForm>
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
-    </body>
+    </div>
   );
 }
 
