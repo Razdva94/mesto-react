@@ -15,11 +15,11 @@ function ImagePopup({ card, onClose }) {
           aria-label="close"
         />
         <img
-          src={card ? card.link : ""}
-          alt={card ? card.name : ""}
+          src={card.link}
+          alt={card.name}
           className="popup__picture"
         />
-        <h3 className="popup__place-name">{card ? card.name : ""}</h3>
+        <h3 className="popup__place-name">{card.name}</h3>
       </div>
     </div>
   );
