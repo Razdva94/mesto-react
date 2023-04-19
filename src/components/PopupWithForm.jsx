@@ -1,12 +1,10 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import React from "react";
 
 function PopupWithForm({ name, title, isOpened, children, onClose }) {
   return (
     <div
       className={`popup popup_type_${name} ${
-        isOpened && (isOpened = "popup_opened")
-      }`}
+        isOpened && (isOpened = "popup_opened")}`}
     >
       <div className="popup__container">
         <button

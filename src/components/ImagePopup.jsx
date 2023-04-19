@@ -1,26 +1,28 @@
 import React from "react";
 
 function ImagePopup({ card, onClose }) {
-  const src = card?.querySelector(".element__image").src;
-  const text = card?.querySelector(".element__text").textContent;
   return (
     <div
       className={`popup popup_type_picture-background ${
-        card && (card = "popup_opened")
+        card ? "popup_opened" : ""
       }`}
     >
       <div className="popup__picture-container">
-        <button className="popup__close-icon" type="button" aria-label="close" onClick={onClose}>
-          {" "}
-        </button>
-        <img
-          className="popup__picture"
-          src={src}
-          alt={text}
+        <button
+          type="button"
+          className="popup__close-icon"
+          onClick={onClose}
+          aria-label="close"
         />
-        <h3 className="popup__place-name">{text}</h3>
+        <img
+          src={card ? card.link : ""}
+          alt={card ? card.name : ""}
+          className="popup__picture"
+        />
+        <h3 className="popup__place-name">{card ? card.name : ""}</h3>
       </div>
     </div>
   );
 }
+
 export default ImagePopup;

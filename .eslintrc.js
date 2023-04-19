@@ -45,5 +45,9 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "react/destructuring-assignment": "off",
+    "no-console": "off",
+    "no-shadow": "off",
+    "eol-last": "off",
+    "jsx-a11y/control-has-associated-label": "off"
   },
 };

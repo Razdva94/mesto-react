@@ -1,5 +1,5 @@
-import React from "react";
 import "../pages/index.css";
+import React from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -24,9 +24,9 @@ function App() {
     React.useState(false);
 
   function handleEditAvatarClick() {
-    setIsEditAvatarPopupOpen(!isAddPlacePopupOpen);
+    setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
   }
-  const [selectedCard, setSelectedCard] = React.useState();
+  const [selectedCard, setSelectedCard] = React.useState(false);
 
   function closeAllPopups() {
     if (isEditProfilePopupOpen) {
@@ -34,12 +34,13 @@ function App() {
     }
     if (isAddPlacePopupOpen) setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
     if (isEditAvatarPopupOpen) setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
-    if (selectedCard) setSelectedCard(undefined);
+    setSelectedCard(false);
   }
 
-  function handleCardClick(evt) {
-    setSelectedCard(evt.target.closest(".element"));
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
+
   return (
     <div className="body">
       <div className="page">
@@ -129,7 +130,7 @@ function App() {
             <span className="popup__text-error popup__url-error"></span>
           </div>
         </PopupWithForm>
-        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+        <ImagePopup onClose={closeAllPopups} card={selectedCard} />
       </div>
     </div>
   );
