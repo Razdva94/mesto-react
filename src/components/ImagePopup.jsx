@@ -4,7 +4,7 @@ function ImagePopup({ card, onClose }) {
   return (
     <div
       className={`popup popup_type_picture-background ${
-        card ? "popup_opened" : ""
+        card.link ? "popup_opened" : ""
       }`}
     >
       <div className="popup__picture-container">
