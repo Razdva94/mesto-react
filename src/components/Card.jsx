@@ -1,11 +1,24 @@
 import React from "react";
 import bin from "../images/bin.svg";
+import { CurrentUserContext } from "./CurrentUserContext";
 
-function Card({ card, onCardClick }) {
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const isLiked = card.likes.some((like) => like._id === currentUser._id);
+  const isOwn = card.owner._id === currentUser._id;
   const handleClick = () => onCardClick(card);
+  const handleLikeClick = () => onCardLike(card);
+  const handleCardDelete = () => onCardDelete(card);
   return (
     <div className="element">
-      <img className="element__bin" src={bin} alt="мусорка" />
+      {isOwn && (
+        <img
+          className="element__bin"
+          src={bin}
+          alt="мусорка"
+          onClick={handleCardDelete}
+        />
+      )}
       <img
         className="element__image"
         src={card.link}
@@ -18,7 +31,10 @@ function Card({ card, onCardClick }) {
           <button
             aria-label="like"
             type="button"
-            className="element__like-icon"
+            className={`element__like-icon ${
+              isLiked && "element__like-icon_active"
+            }`}
+            onClick={handleLikeClick}
           />
           <span className="element__like-number">{card.likes.length}</span>
         </div>

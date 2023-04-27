@@ -48,6 +48,8 @@ module.exports = {
     "no-console": "off",
     "no-shadow": "off",
     "eol-last": "off",
-    "jsx-a11y/control-has-associated-label": "off"
+    "jsx-a11y/control-has-associated-label": "off",
+    "space-before-blocks": "off",
+    "import/prefer-default-export": "off",
   },
 };

@@ -55,14 +55,13 @@ class Api {
     }).then((res) => this._checkResponse(res));
   }
 
-  putLike(cardId) {
-    return fetch(`${this._url}/cards/${cardId}/likes`, {
-      method: "PUT",
-      headers: this._headers,
-    }).then((res) => this._checkResponse(res));
-  }
-
-  deleteLike(cardId) {
+  changeLikeCardStatus(cardId, value) {
+    if (value) {
+      return fetch(`${this._url}/cards/${cardId}/likes`, {
+        method: "PUT",
+        headers: this._headers,
+      }).then((res) => this._checkResponse(res));
+    }
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
