@@ -51,5 +51,8 @@ module.exports = {
     "jsx-a11y/control-has-associated-label": "off",
     "space-before-blocks": "off",
     "import/prefer-default-export": "off",
+    "function-paren-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "dot-notation": "off",
   },
 };

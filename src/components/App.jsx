@@ -7,6 +7,8 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/api";
 import { CurrentUserContext } from "./CurrentUserContext";
+import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [cards, setCards] = React.useState([]);
@@ -33,10 +35,18 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
     React.useState(null);
 
@@ -73,6 +83,29 @@ function App() {
   function handleCardClick(card) {
     setSelectedCard(card);
   }
+
+  function handleUpdateUser({ name, about }) {
+    api
+      .changeProfileInfo({ name, about })
+      .then((user) => {
+        setCurrentUser(user);
+      })
+      .then(() => closeAllPopups())
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  function handleUpdateAvatar(avatarUrl) {
+    api
+      .changeAvatarImage(avatarUrl)
+      .then((avatar) => {
+        setCurrentUser(avatar);
+      })
+      .then(() => closeAllPopups())
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -88,37 +121,16 @@ function App() {
             cards={cards}
           />
           <Footer />
-          <PopupWithForm
-            name="saved"
-            title="Редактировать&nbsp;профиль"
+          <EditProfilePopup
             isOpened={isEditProfilePopupOpen}
             onClose={closeAllPopups}
-          >
-            <div className="popup__input-container">
-              <input
-                required
-                type="text"
-                minLength="2"
-                maxLength="40"
-                className="popup__input popup__input_type_name"
-                id="name"
-                placeholder="Имя"
-              />
-              <span className="popup__text-error name-error"></span>
-            </div>
-            <div className="popup__input-container">
-              <input
-                required
-                type="text"
-                minLength="2"
-                maxLength="200"
-                className="popup__input popup__input_type_job"
-                id="about"
-                placeholder="О себе"
-              />
-              <span className="popup__text-error about-error"></span>
-            </div>
-          </PopupWithForm>
+            onUpdateUser={handleUpdateUser}
+          />
+          <EditAvatarPopup
+            isOpened={isEditAvatarPopupOpen}
+            onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
+          />
           <PopupWithForm
             name="create"
             title="Новое место"
@@ -149,23 +161,6 @@ function App() {
             </div>
           </PopupWithForm>
           <PopupWithForm name="delete" title="Вы уверены?" />
-          <PopupWithForm
-            name="update-avatar"
-            title="Обновить аватар"
-            isOpened={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}
-          >
-            <div className="popup__input-container">
-              <input
-                required
-                type="url"
-                className="popup__input"
-                id="popup__url"
-                placeholder="Ссылка на картинку"
-              />
-              <span className="popup__text-error popup__url-error"></span>
-            </div>
-          </PopupWithForm>
           <ImagePopup onClose={closeAllPopups} card={selectedCard} />
         </div>
       </div>

@@ -50,7 +50,7 @@ class Api {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: avatarUrl.popup__url,
+        avatar: avatarUrl
       }),
     }).then((res) => this._checkResponse(res));
   }
