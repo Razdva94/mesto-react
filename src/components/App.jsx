@@ -5,10 +5,11 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
-import api from "../utils/api";
 import { CurrentUserContext } from "./CurrentUserContext";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
+import api from "../utils/api";
 
 function App() {
   const [cards, setCards] = React.useState([]);
@@ -106,6 +107,8 @@ function App() {
         console.log(err);
       });
   }
+  // function handleAddPlacePopup(){
+  // }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -131,35 +134,10 @@ function App() {
             onClose={closeAllPopups}
             onUpdateAvatar={handleUpdateAvatar}
           />
-          <PopupWithForm
-            name="create"
-            title="Новое место"
+          <AddPlacePopup
             isOpened={isAddPlacePopupOpen}
             onClose={closeAllPopups}
-          >
-            <div className="popup__input-container">
-              <input
-                required
-                type="text"
-                minLength="2"
-                maxLength="30"
-                className="popup__input popup__input_type_name"
-                id="popup__name"
-                placeholder="Название"
-              />
-              <span className="popup__text-error popup__name-error"></span>
-            </div>
-            <div className="popup__input-container">
-              <input
-                required
-                type="url"
-                className="popup__input popup__input_type_job"
-                id="popup__link"
-                placeholder="Ссылка на картинку"
-              />
-              <span className="popup__text-error popup__link-error"></span>
-            </div>
-          </PopupWithForm>
+          />
           <PopupWithForm name="delete" title="Вы уверены?" />
           <ImagePopup onClose={closeAllPopups} card={selectedCard} />
         </div>
