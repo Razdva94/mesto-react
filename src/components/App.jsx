@@ -107,8 +107,15 @@ function App() {
         console.log(err);
       });
   }
-  // function handleAddPlacePopup(){
-  // }
+  function handleAddPlaceSubmit({ cardName, cardLink }) {
+    api
+      .postCardToServer({ cardName, cardLink })
+      .then((newCard) => setCards([newCard, ...cards]))
+      .then(() => closeAllPopups())
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -137,6 +144,7 @@ function App() {
           <AddPlacePopup
             isOpened={isAddPlacePopupOpen}
             onClose={closeAllPopups}
+            onAddPlace={handleAddPlaceSubmit}
           />
           <PopupWithForm name="delete" title="Вы уверены?" />
           <ImagePopup onClose={closeAllPopups} card={selectedCard} />
