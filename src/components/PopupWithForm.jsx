@@ -1,6 +1,16 @@
 import React from "react";
 
-function PopupWithForm({ name, title, isOpened, children, onClose, onSubmit }) {
+function PopupWithForm({
+  name,
+  title,
+  isOpened,
+  children,
+  onClose,
+  onSubmit,
+  onLoadingState,
+  buttonText,
+  buttonTextOnLoading,
+}) {
   return (
     <div
       className={`popup popup_type_${name} ${
@@ -23,7 +33,7 @@ function PopupWithForm({ name, title, isOpened, children, onClose, onSubmit }) {
           <h2 className="popup__title">{title}</h2>
           {children}
           <button type="submit" className="popup__button">
-            Сохранить
+            {`${onLoadingState ? buttonTextOnLoading : buttonText}`}
           </button>
         </form>
       </div>

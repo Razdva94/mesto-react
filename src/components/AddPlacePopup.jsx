@@ -1,20 +1,24 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import useForm from "../hooks/useForm";
 
-function AddPlacePopup({ isOpened, onClose, onAddPlace }) {
-  const [cardName, setCardName] = React.useState("");
-  const [cardLink, setCardLink] = React.useState("");
+function AddPlacePopup({ isOpened, onClose, onAddPlace, onLoadingState }) {
+  // const [values, setValues] = React.useState({});
+  // const handleChange = (event) => {
+  //   const { value, id } = event.target;
+  //   setValues({ ...values, [id]: value });
+  // };
+  const { values, handleChange, setValues } = useForm();
   function handleSubmit(e) {
     e.preventDefault();
-    const promiseOnAddPlace = new Promise((resolve) => {
-      resolve(onAddPlace({ cardName, cardLink }));
-    });
-    promiseOnAddPlace
-      .then(setCardName(""), setCardLink(""))
-      .catch((err) => {
-        console.log(err);
-      });
+    onAddPlace(values);
   }
+
+  React.useEffect(() => {
+    setValues({});
+  }, [isOpened]);
+
+  console.log(values);
   return (
     <PopupWithForm
       name="create"
@@ -22,6 +26,9 @@ function AddPlacePopup({ isOpened, onClose, onAddPlace }) {
       isOpened={isOpened}
       onClose={onClose}
       onSubmit={handleSubmit}
+      onLoadingState={onLoadingState}
+      buttonText="Создать"
+      buttonTextOnLoading="Создание..."
     >
       <div className="popup__input-container">
         <input
@@ -32,8 +39,8 @@ function AddPlacePopup({ isOpened, onClose, onAddPlace }) {
           className="popup__input popup__input_type_name"
           id="popup__name"
           placeholder="Название"
-          onChange={(e) => setCardName(e.target.value)}
-          value={cardName}
+          onChange={handleChange}
+          value={values.popup__name || ""}
         />
         <span className="popup__text-error popup__name-error"></span>
       </div>
@@ -44,8 +51,8 @@ function AddPlacePopup({ isOpened, onClose, onAddPlace }) {
           className="popup__input popup__input_type_job"
           id="popup__link"
           placeholder="Ссылка на картинку"
-          onChange={(e) => setCardLink(e.target.value)}
-          value={cardLink}
+          onChange={handleChange}
+          value={values.popup__link || ""}
         />
         <span className="popup__text-error popup__link-error"></span>
       </div>

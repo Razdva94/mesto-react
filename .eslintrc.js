@@ -53,6 +53,8 @@ module.exports = {
     "import/prefer-default-export": "off",
     "function-paren-newline": "off",
     "implicit-arrow-linebreak": "off",
-    "dot-notation": "off",
+    "consistent-return": "off",
+    "camelcase": "off",
+    "quote-props": "off",
   },
 };

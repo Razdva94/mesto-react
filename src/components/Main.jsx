@@ -2,7 +2,7 @@ import React from "react";
 import editButton from "../images/Vector(1).svg";
 import profileAddButton from "../images/Vector(2).svg";
 import Card from "./Card";
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Main({
   onEditAvatar,
@@ -16,14 +16,13 @@ function Main({
   const currentUser = React.useContext(CurrentUserContext);
   const cardsRender = cards.map((element) => {
     return (
-      <div key={element._id}>
-        <Card
-          card={element}
-          onCardClick={onCardClick}
-          onCardLike={onCardLike}
-          onCardDelete={onCardDelete}
-        />
-      </div>
+      <Card
+        key={element._id}
+        card={element}
+        onCardClick={onCardClick}
+        onCardLike={onCardLike}
+        onCardDelete={onCardDelete}
+      />
     );
   });
   return (

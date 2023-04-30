@@ -23,14 +23,13 @@ class Api {
     }).then((res) => this._checkResponse(res));
   }
 
-  postCardToServer(cardInfo) {
-    console.log(cardInfo);
+  postCardToServer(name, link) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardInfo.cardName,
-        link: cardInfo.cardLink
+        name,
+        link
       }),
     }).then((res) => this._checkResponse(res));
   }
