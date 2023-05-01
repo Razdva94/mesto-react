@@ -138,7 +138,6 @@ function App() {
       .finally(() => setIsLoading(false));
   }
   function handleAddPlaceSubmit({ popup__name, popup__link }) {
-    console.log(popup__name);
     setIsLoading(true);
     api
       .postCardToServer(popup__name, popup__link)

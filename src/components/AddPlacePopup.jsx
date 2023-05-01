@@ -3,11 +3,6 @@ import PopupWithForm from "./PopupWithForm";
 import useForm from "../hooks/useForm";
 
 function AddPlacePopup({ isOpened, onClose, onAddPlace, onLoadingState }) {
-  // const [values, setValues] = React.useState({});
-  // const handleChange = (event) => {
-  //   const { value, id } = event.target;
-  //   setValues({ ...values, [id]: value });
-  // };
   const { values, handleChange, setValues } = useForm();
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,9 +11,8 @@ function AddPlacePopup({ isOpened, onClose, onAddPlace, onLoadingState }) {
 
   React.useEffect(() => {
     setValues({});
-  }, [isOpened]);
+  }, [isOpened, setValues]);
 
-  console.log(values);
   return (
     <PopupWithForm
       name="create"
