@@ -1,4 +1,5 @@
 import React from "react";
+import usePopupClose from "../hooks/usePopupClose";
 
 function PopupWithForm({
   name,
@@ -11,6 +12,7 @@ function PopupWithForm({
   buttonText,
   buttonTextOnLoading,
 }) {
+  usePopupClose(isOpened, onClose);
   return (
     <div
       className={`popup popup_type_${name} ${
@@ -27,7 +29,6 @@ function PopupWithForm({
         <form
           name={name}
           className={`popup__form popup__form_type_${name}`}
-          noValidate
           onSubmit={onSubmit}
         >
           <h2 className="popup__title">{title}</h2>

@@ -35,6 +35,7 @@ class Api {
   }
 
   changeProfileInfo(getInfo) {
+    console.log(getInfo);
     return this._request(`${this._url}/users/me`, {
       method: "PATCH",
       headers: this._headers,

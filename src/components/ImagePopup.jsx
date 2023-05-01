@@ -1,6 +1,8 @@
 import React from "react";
+import usePopupClose from "../hooks/usePopupClose";
 
 function ImagePopup({ card, onClose }) {
+  usePopupClose(card.link, onClose);
   return (
     <div
       className={`popup popup_type_picture-background ${
