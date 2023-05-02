@@ -5,8 +5,17 @@ import useForm from "../hooks/useForm";
 
 function EditProfilePopup({ isOpened, onClose, onUpdateUser, onLoadingState }) {
   const { values, handleChange, setValues } = useForm();
-  console.log(values);
   const currentUser = React.useContext(CurrentUserContext);
+  const inputRefName = React.useRef();
+  function checkInputValidity() {
+    if (inputRefName.current) {
+      return inputRefName.current.checkValidity();
+    }
+  }
+  if (inputRefName.current) {
+    inputRefName.current.addEventListener("input", () => checkInputValidity);
+  }
+  console.log(checkInputValidity());
   React.useEffect(() => {
     if (currentUser) {
       setValues(currentUser);
@@ -33,11 +42,14 @@ function EditProfilePopup({ isOpened, onClose, onUpdateUser, onLoadingState }) {
           type="text"
           minLength="2"
           maxLength="40"
-          className="popup__input popup__input_type_name"
+          className={`popup__input popup__input_type_name ${
+            !checkInputValidity() ? "popup__input_type_error" : ""
+          }`}
           id="name"
           placeholder="Имя"
           value={values.name || ""}
           onChange={handleChange}
+          ref={inputRefName}
         />
         <span className="popup__text-error name-error"></span>
       </div>
