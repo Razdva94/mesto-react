@@ -8,10 +8,6 @@ function EditAvatarPopup({
   onLoadingState,
 }) {
   const inputRef = React.useRef();
-  function updateValue(e) {
-    inputRef.current.value = e.target.value;
-  }
-  inputRef.current?.addEventListener("input", updateValue);
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar(inputRef.current.value);
