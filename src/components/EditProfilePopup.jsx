@@ -5,8 +5,8 @@ import useForm from "../hooks/useForm";
 
 function EditProfilePopup({ isOpened, onClose, onUpdateUser, onLoadingState }) {
   const { values, handleChange, setValues } = useForm();
+  console.log(values);
   const currentUser = React.useContext(CurrentUserContext);
-
   React.useEffect(() => {
     if (currentUser) {
       setValues(currentUser);
@@ -14,9 +14,7 @@ function EditProfilePopup({ isOpened, onClose, onUpdateUser, onLoadingState }) {
   }, [currentUser, isOpened, setValues]);
   function handleSubmit(e) {
     e.preventDefault();
-    onUpdateUser(
-      values
-    );
+    onUpdateUser(values);
   }
   return (
     <PopupWithForm

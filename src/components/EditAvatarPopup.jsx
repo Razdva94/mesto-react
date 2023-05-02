@@ -11,7 +11,7 @@ function EditAvatarPopup({
   function updateValue(e) {
     inputRef.current.value = e.target.value;
   }
-  inputRef.current?.addEventListener("change", updateValue);
+  inputRef.current?.addEventListener("input", updateValue);
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar(inputRef.current.value);

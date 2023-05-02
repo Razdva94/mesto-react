@@ -56,5 +56,6 @@ module.exports = {
     "consistent-return": "off",
     "camelcase": "off",
     "quote-props": "off",
+    "react/no-unknown-property": "off"
   },
 };
