@@ -11,12 +11,13 @@ function PopupWithForm({
   onLoadingState,
   buttonText,
   buttonTextOnLoading,
+  isFormValid,
 }) {
   usePopupClose(isOpened, onClose);
   return (
     <div
       className={`popup popup_type_${name} ${
-        isOpened && (isOpened = "popup_opened")
+        isOpened && "popup_opened"}
       }`}
     >
       <div className="popup__container">
@@ -33,13 +34,18 @@ function PopupWithForm({
         >
           <h2 className="popup__title">{title}</h2>
           {children}
-          <button type="submit" className="popup__button">
-            {`${onLoadingState ? buttonTextOnLoading : buttonText}`}
+          <button
+            type="submit"
+            className={`popup__button ${
+              isOpened && !isFormValid && "popup__button_inactive"
+            }`}
+            disabled={isOpened && !isFormValid}
+          >
+            {`${onLoadingState ? buttonTextOnLoading : buttonText + isOpened + isFormValid}`}
           </button>
         </form>
       </div>
     </div>
   );
 }
-
 export default PopupWithForm;

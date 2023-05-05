@@ -58,12 +58,14 @@ function App() {
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+    console.log(!isEditProfilePopupOpen);
   }
 
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+    console.log(!isAddPlacePopupOpen);
   }
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
@@ -117,10 +119,10 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }
-  function handleAddPlaceSubmit({ popup__name, popup__link }) {
+  function handleAddPlaceSubmit({ cardName, cardLink }) {
     setIsLoading(true);
     api
-      .postCardToServer(popup__name, popup__link)
+      .postCardToServer(cardName, cardLink)
       .then((newCard) => setCards([newCard, ...cards]))
       .then(() => closeAllPopups())
       .catch((err) => {

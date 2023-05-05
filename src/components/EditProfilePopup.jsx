@@ -28,7 +28,7 @@ function EditProfilePopup({ isOpened, onClose, onUpdateUser, onLoadingState }) {
     >
       <div className="popup__input-container">
         <input
-          required
+          name="name"
           type="text"
           minLength="2"
           maxLength="40"
@@ -42,7 +42,7 @@ function EditProfilePopup({ isOpened, onClose, onUpdateUser, onLoadingState }) {
       </div>
       <div className="popup__input-container">
         <input
-          required
+          name="about"
           type="text"
           minLength="2"
           maxLength="200"
