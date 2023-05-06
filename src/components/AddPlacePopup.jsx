@@ -2,6 +2,34 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import useForm from "../hooks/useForm";
 
+const isValidUrl = (value) => {
+  return /^(ftp|http|https):\/\/[^ "]+$/.test(value);
+};
+const validators = {
+  cardName: {
+    required: (value) => {
+      return value === "";
+    },
+    minLength: (value) => {
+      return value?.length === 1;
+    },
+    maxLength: (value) => {
+      return value?.length > 30;
+    },
+  },
+  cardLink: {
+    required: (value) => {
+      return value === "";
+    },
+    isNotURL: (value) => {
+      if (value) {
+        return !isValidUrl(value);
+      }
+      return false;
+    },
+  },
+};
+
 function AddPlacePopup({ isOpened, onClose, onAddPlace, onLoadingState }) {
   const { values, handleChange, setValues } = useForm();
   function handleSubmit(e) {
@@ -19,35 +47,6 @@ function AddPlacePopup({ isOpened, onClose, onAddPlace, onLoadingState }) {
       isNotURL: true,
     },
   });
-  const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-  function isValidUrl(value) {
-    return urlRegex.test(value);
-  }
-  const validators = {
-    cardName: {
-      required: (value) => {
-        return value === "";
-      },
-      minLength: (value) => {
-        return value?.length === 1;
-      },
-      maxLength: (value) => {
-        return value?.length > 30;
-      },
-    },
-    cardLink: {
-      required: (value) => {
-        return value === "";
-      },
-
-      isNotURL: (value) => {
-        if (value) {
-          return !isValidUrl(value);
-        }
-        return false;
-      },
-    },
-  };
   React.useEffect(() => {
     const { cardName, cardLink } = values;
     const cardNameValidationResult = Object.keys(validators.cardName)
@@ -66,7 +65,6 @@ function AddPlacePopup({ isOpened, onClose, onAddPlace, onLoadingState }) {
       cardName: cardNameValidationResult,
       cardLink: cardLinkValidationResult,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values]);
   React.useEffect(() => {
     setValues({});
@@ -134,7 +132,7 @@ function AddPlacePopup({ isOpened, onClose, onAddPlace, onLoadingState }) {
         )}
         {error.cardLink.isNotURL && (
           <span className="popup__text-error popup__link-error">
-            Введите пожалуйста корректную ссылку
+            Введите корректную ссылку
           </span>
         )}
       </div>

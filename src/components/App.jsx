@@ -58,14 +58,12 @@ function App() {
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
-    console.log(!isEditProfilePopupOpen);
   }
 
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
 
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
-    console.log(!isAddPlacePopupOpen);
   }
 
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
