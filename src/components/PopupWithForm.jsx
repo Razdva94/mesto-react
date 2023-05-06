@@ -41,7 +41,7 @@ function PopupWithForm({
             }`}
             disabled={isOpened && !isFormValid}
           >
-            {`${onLoadingState ? buttonTextOnLoading : buttonText + isOpened + isFormValid}`}
+            {`${onLoadingState ? buttonTextOnLoading : buttonText}`}
           </button>
         </form>
       </div>
