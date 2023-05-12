@@ -60,5 +60,6 @@ module.exports = {
     "no-useless-escape": "off",
     "max-len": "off",
     "no-new": "off",
+    "react/jsx-closing-tag-location": "off",
   },
 };
