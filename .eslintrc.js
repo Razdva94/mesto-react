@@ -56,6 +56,10 @@ module.exports = {
     "consistent-return": "off",
     "camelcase": "off",
     "quote-props": "off",
-    "react/no-unknown-property": "off"
+    "react/no-unknown-property": "off",
+    "no-useless-escape": "off",
+    "max-len": "off",
+    "no-new": "off",
+    "react/jsx-closing-tag-location": "off",
   },
 };

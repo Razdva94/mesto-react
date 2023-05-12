@@ -117,10 +117,10 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }
-  function handleAddPlaceSubmit({ popup__name, popup__link }) {
+  function handleAddPlaceSubmit({ cardName, cardLink }) {
     setIsLoading(true);
     api
-      .postCardToServer(popup__name, popup__link)
+      .postCardToServer(cardName, cardLink)
       .then((newCard) => setCards([newCard, ...cards]))
       .then(() => closeAllPopups())
       .catch((err) => {
